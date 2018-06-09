@@ -1,0 +1,66 @@
+created Phone and User entity:
+try binding in some different manner
+ senario:
+ one user can have multiple phone( motorola,nokia,samsung etc)
+ one employee can have many address, 
+ 
+ one user can have one 
+ other secondary details in a separate table called USER_PROFILES
+ so relaionship will be 
+ user 
+ oneToMany
+ 
+ employee
+ OneToMany
+ 
+ and phone side will be
+ @ManyToOne
+ Address
+@ManyToOne
+ 
+ *******************
+ oneTOOne:
+ one user can have one profile that contain user secondary information like address, zip, phone number
+ have a one-to-one relationship between USERS and USER_PROFILES table
+ - we can bind it two way
+  -unidirectional and bidirectional
+  -humne humare example me bidirectional mapping use kiya hai, 
+  so hume btana hoga ki parent koun hai and child koun hai,- parent child decalre krne ke bad btana hoga ki owner koun hai
+  jaruri nahi ki parent hi hamesha owner ho..
+  most of the oneToOne case me child owner hota hai
+  Most often, the child entity is the owner of the relationship and the parent entity is the inverse side of the relationship.
+  The owner of the relationship contains a @JoinColumn annotation to specify the foreign key column, 
+  inverse-side of the relationship contains a mappedBy attribute to indicate that the relationship is mapped by the other entity.
+  
+  
+  if we use unidirectional then hibernate will fire query internally like:
+  select a.* from address a inner join customer c on c.addressId = a.id;
+  
+  if we do bidirectional then hibernate will fire query two times same query in different syntax
+  -select a.* from address a inner join customer c on c.addressId = a.id;
+  -select c.* from customer c inner join address a on c.addressId = a.id;
+ 
+ take care of:
+ jab hum bidirectional use krenge to btana padega ki knha se start ho rha hai, knha pe khatam, 
+ think like <---->, two head arrow, need to tell hibernate which is parent(owning side)
+ jo parent hai uske pass 
+  owner of the relationship contains a @JoinColumn annotation to specify the foreign key column,so jnha pe bhi 
+  user rahega, profile ke table me,use @JoinColumn
+  -jo child rahega usme need to use mappedBy,
+  -mappedBy matlab?- 
+  -entity to tell hibernate that the "User" entity is not responsible for this relationship,
+  - and It should look for a field named user in the UserProfile entity to find the configuration for the JoinColumn/ForeignKey column
+ 
+  *The advantage of a bidirectional association is that you can navigate it in both directions (get the address of a customer, or get the customer of an address)
+ ynha pe bhi parent child relation hota hai
+ User(parent)
+ user_profile(child)
+ conclusion: child will be owner of this relation, so having @joinedColumn
+ *******************
+ we can bind it two ways, all ways are correct, choose depending on situation
+ 1)one way binding,
+ any one entity can have annotation, either side
+ 2) both the entities have annotation, thats called tightly coupled
+ 
+ cascade example:
+ if I am using cascade then do not need to save child entity 

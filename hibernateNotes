@@ -1,0 +1,47 @@
+ManyToMany:
+sometimes you need more than the two Foreign Key columns in the join table,
+-The first thing we need is to map the composite Primary Key which belongs to the intermediary join table.
+-an extra table is used (known as Joined table)
+-whose primary key is the combination of primary key of both the associated table
+
+
+*Many* association, always override hashcode and equals method which are looked by hibernate
+ when holding entities into collections.
+ 
+ this can also be happen unidirectinal an bidirectinal,
+ -agar hum bidirectional annotation use krenge to bhi same hi kaam hoga manytomany ke case, ultimatly we have to create
+ intermidiate table 
+ -hum bidirectional ke case both side @ManyToMany likhenge, lekin sirf owning side me table create krene ka detail denge
+ -- child side me @mappedBy, likhenge
+ 
+ example1: student can have many courses, 
+ student can enroll in any number of courses and the course can have any number of students.
+ example2:Book and publisher
+ 
+ need to analyse which is parent, child and owning entity, owning entity must have some specific annotation
+ -student is owner and parent both, so this entity must have following annotations
+  -@JoinTable and @JoinColumn
+ 
+ and child side must have @mappedBy
+ mappedBy indicates the entity is the inverse of the relationship.
+ 
+ *************************
+ @SecondaryTable:-
+ -Consider a situation in which you have a legacy database in which the information about an entity is stored in multiple tables
+  and you want JPA entity to store all the information in single entity.
+ -which an entity can map more than one table to fetch the data.
+ -The entity which is fetching data should have @SecondaryTables annotations.
+  It associates secondary table on the basis of primary and foreign key and also on the basis of unique constrains. 
+  usage: such that some fields from entity are stored in one table and other fields into other table.
+  example1:
+  EMPLOYEE table has columns IDEMPLOYEE, FIRST_NAME and LAST_NAME\
+  EMPLOYEEDETAILS table has columns EMPLOYEEID, EMAILID, JOININGDATE and SALARY 
+  example2:
+ student and another is name,Student entity will fetch secondary entity name on the basis of primary key. 
+ how To use:-
+ To store these fields in some other table, we need to address following concerns:
+ What will be the name of the other table : JPA provides an annotation @SecondaryTable. This is a class level annotation which allows you to specify a table which can store some fields of the annotated class.
+Which fields should go in this table :  There is an attribute named table of @Column annotation. This annotation is applied over a class field which allows you to specify the table in which the value of this field will be stored.
+how to save entity:
+Now when you create an object of Employee class and save it using save method of Hibernate’s session or persist method of JPA’s entity manager, its fields id and name are saved in employee table and fields address,
+ bloodGroup and zipCode are saved in employeedetail table

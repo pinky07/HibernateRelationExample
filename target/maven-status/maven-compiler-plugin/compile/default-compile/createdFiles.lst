@@ -1,0 +1,11 @@
+com\infotech\entities\Address.class
+com\infotech\entities\Employee.class
+com\infotech\client\SaveDataClientTest.class
+com\infotech\entities\Name.class
+com\infotech\entities\Gender.class
+com\infotech\entities\Phone.class
+com\infotech\util\HibernateUtil.class
+com\infotech\entities\Course.class
+com\infotech\entities\Student.class
+com\infotech\entities\UserProfile.class
+com\infotech\entities\User.class

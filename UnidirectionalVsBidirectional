@@ -1,0 +1,5 @@
+the main differenece is that bidirectional relationship provides navigational access in both directions,
+ so that you can access the other side without explicit queries.
+  Also it allows you to apply cascading options to both directions.
+ 
+ 
