@@ -64,3 +64,10 @@ try binding in some different manner
  
  cascade example:
  if I am using cascade then do not need to save child entity 
+ 
+ Serialization kya hota hai:
+jab hum ek object ko manipulate kr ke fir se use krte hai tab hume serialization ki jarurat hoti hai
+#jab ek object ko ek machine se dusre mashcine me bhejte hai to serialization ki jarurat hoti hai
+# exmple: jab hume phone pe baat krte hai ek end se dusre end via wire 
+# jvm take care krta hai ye pure process ko 
+# useful hota hai recreTe objec from original state to new state
