@@ -71,3 +71,6 @@ jab hum ek object ko manipulate kr ke fir se use krte hai tab hume serialization
 # exmple: jab hume phone pe baat krte hai ek end se dusre end via wire 
 # jvm take care krta hai ye pure process ko 
 # useful hota hai recreTe objec from original state to new state
+**********************
+JPA me jab bhi onetoone mapping rhta hai, tab hum khin se bhi (parent to child/ya vice verse) save/method call perform kr skte hai
+new method create krene ki jarurat nhi hoti hai
